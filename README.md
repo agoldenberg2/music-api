@@ -1,91 +1,119 @@
-# Assignment #7: Music Library API
+# Music API
 
-A RESTful API for managing a music library built with Node.js, Express.js, and Sequelize ORM using SQLite database.
+This project is a RESTful API for managing a music library. 
+
+---
+
+## Technologies Used
+
+- Node.js
+- Express.js
+- Sequelize ORM
+- SQLite
+- dotenv
+
+---
 
 ## Installation
 
-1. Clone the repository
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+Clone the repository:
 
-3. Create environment file:
-   ```bash
-   cp .env.example .env
-   ```
+git clone https://github.com/agoldenberg2/music-api 
 
-4. Set up the database:
-   ```bash
-   node database/setup.js
-   ```
+Navigate into the project folder:
 
-5. Seed the database with sample data:
-   ```bash
-   node database/seed.js
-   ```
+cd music-api
 
-6. Start the server:
-   ```bash
-   node server.js
-   ```
+Install dependencies:
+
+npm install
+
+Install required packages:
+
+npm install sequelize sqlite3 dotenv
+
+---
+
+## Database Setup
+
+Create the database and tables:
+
+node database/setup.js
+
+Seed the database with sample tracks:
+
+node database/seed.js
+
+---
+
+## Running the Server
+
+Start the server with:
+
+node server.js
+
+The server will run on:
+
+http://localhost:3000
+
+---
 
 ## API Endpoints
 
 ### Get All Tracks
-- **GET** `/api/tracks`
-- Returns all tracks in the database
+GET /api/tracks
+
+Returns all tracks in the database.
+
+---
 
 ### Get Track by ID
-- **GET** `/api/tracks/:id`
-- Returns a specific track by ID
+GET /api/tracks/:id
 
-### Create New Track
-- **POST** `/api/tracks`
-- Creates a new track
-- **Body:**
-  ```json
-  {
-    "songTitle": "Song Title",
-    "artistName": "Artist Name",
-    "albumName": "Album Name",
-    "genre": "Genre",
-    "duration": 180,
-    "releaseYear": 2024
-  }
-  ```
+Returns a single track.
 
-### Update Track
-- **PUT** `/api/tracks/:id`
-- Updates an existing track
-- **Body:** Same as create track
+---
 
-### Delete Track
-- **DELETE** `/api/tracks/:id`
-- Deletes a track by ID
+### Create a Track
+POST /api/tracks
 
-## Database Schema
+Creates a new track.
 
-The `tracks` table contains the following fields:
+Example JSON body:
 
-- `trackId` (INTEGER, Primary Key, Auto Increment)
-- `songTitle` (STRING, Required)
-- `artistName` (STRING, Required)
-- `albumName` (STRING, Required)
-- `genre` (STRING, Required)
-- `duration` (INTEGER, Required) - Duration in seconds
-- `releaseYear` (INTEGER, Required)
+{
+ "songTitle": "Bad Guy",
+ "artistName": "Billie Eilish",
+ "albumName": "When We All Fall Asleep",
+ "genre": "Pop",
+ "duration": 194,
+ "releaseYear": 2019
+}
 
-## Project Structure
+---
 
-```
-music-library-api/
-├── database/
-│   ├── setup.js    # Database setup and model definitions
-│   └── seed.js     # Sample data seeding
-├── server.js       # Main server file with API routes
-├── package.json
-├── .env            # Environment variables
-├── .gitignore
-└── README.md
-```
+### Update a Track
+PUT /api/tracks/:id
+
+Updates an existing track.
+
+---
+
+### Delete a Track
+DELETE /api/tracks/:id
+
+Deletes a track from the database.
+
+---
+
+## Environment Variables
+
+This project uses a `.env` file to store configuration settings.
+
+Example:
+
+PORT=3000
+DB_NAME=music_library
+
+---
+
